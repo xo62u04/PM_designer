@@ -1,0 +1,21 @@
+{
+  "name": "pm-designer",
+  "version": "0.1.0",
+  "description": "A loop of skills that helps a new PM onboard, clarify project goals/stakeholders/RACI, plan a WBS for a new project, and run a recurring meeting agenda-to-recap-to-tracking loop. Combines original skills (pm-onboarding, pm-project-clarify, pm-raci-watchouts, pm-wbs-kickoff, pm-meeting-loop) with vendored skills from product-on-purpose/pm-skills for meeting and stakeholder documentation (see THIRD_PARTY_NOTICES.md).",
+  "homepage": "https://github.com/xo62u04/PM_designer",
+  "repository": "https://github.com/xo62u04/PM_designer",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "xo62u04"
+  },
+  "keywords": [
+    "project-management",
+    "pm",
+    "onboarding",
+    "raci",
+    "wbs",
+    "stakeholders",
+    "meeting-notes",
+    "agent-skills"
+  ]
+}
