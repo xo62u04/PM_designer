@@ -1,6 +1,6 @@
 ---
 name: pm-project-clarify
-description: Runs a guided intake interview for a new (or ambiguous) project to clarify its goal, scope, success criteria, and the full stakeholder map — who the decision-making sponsor/boss is, who is a consulting advisor with no authority, who executes (dev/build team), and who the deliverable is actually owed to. Use at project kickoff, or whenever goals/ownership feel contested or unclear.
+description: Extracts the project goal, scope, success criteria, and full stakeholder map (decision-making sponsor/boss, consulting advisor with no authority, dev/build team, who the deliverable is owed to) from materials the PM already has — meeting notes, a feature/requirements list, a goal statement — and only asks the PM interview-style questions for what those materials leave unclear. Use at project kickoff, or whenever goals/ownership feel contested or unclear.
 metadata:
   classification: pm-designer-core
   version: "1.0.0"
@@ -19,13 +19,25 @@ metadata:
 - 專案卡住了，回頭發現「目標」或「誰是關係人」本身就有分歧
 - 有既有的 `pm-workspace/00-intake-clarify.md`，需要在範圍變動時重新校對
 
+## 輸入素材優先，不要無謂發問
+
+這個 skill 預設使用者會直接餵素材，而不是從頭做逐題訪談。常見素材三類：
+
+- **會議記錄**（逐字稿、Otter/Fireflies 輸出、手記）
+- **專案功能清單**（PRD、需求清單、Jira/Backlog 匯出、規格書）
+- **專案目標描述**（老闆的一段話、企劃書、OKR）
+
+流程是「先從素材裡榨出答案，只對榨不出來的部分才問」，不是無條件跑完下面四類問題。
+
 ## 執行方式
 
-### 1. 讀取既有內容
+### 1. 讀取既有內容與素材
 
-若 `pm-workspace/00-intake-clarify.md` 已存在，先讀取，只針對缺漏或變動的部分提問，不要重問已回答過的。
+若 `pm-workspace/00-intake-clarify.md` 已存在，先讀取。接著讀使用者提供的會議記錄/功能清單/目標描述，逐一對照下面四類問題，把能從素材直接推得或明確寫出的答案先填上，並標註來源（例如「依 2026-06-20 會議記錄」「依功能清單第3節」）。
 
-### 2. 分四類提問
+### 2. 只對素材沒有回答的部分提問
+
+四類問題中，凡是素材已經清楚回答的就不要再問；只把真正缺漏、素材裡模糊或矛盾的部分列成問題丟回給使用者。素材最常見的缺口是 **Who** 這一類（功能清單通常只講要做什麼，不會講清楚誰是決策者、誰只是顧問），要特別注意這塊即使素材看起來完整也大概率需要追問。
 
 **Why（目標與驅動力）**
 - 這個專案為什麼現在要做？是誰主動提出的？

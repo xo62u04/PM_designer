@@ -1,6 +1,6 @@
 ---
 name: pm-wbs-kickoff
-description: Runs the intake-to-WBS loop when a new project or phase is kicked off — asks the clarifying questions a work breakdown structure actually needs (deliverables, dependencies, constraints, owners), then produces a WBS with milestones and owners pulled from the project's RACI. Use at project/phase kickoff, or whenever a scope change requires re-planning.
+description: Turns a project's feature/requirements list plus its clarified goal and RACI into a work breakdown structure with milestones, dependencies, and owners — deriving structure directly from the feature list first, then asking only for the gaps a WBS actually needs (dependencies, hard deadlines, capacity, acceptance criteria). Use at project/phase kickoff, or whenever a scope change requires re-planning.
 metadata:
   classification: pm-designer-core
   version: "1.0.0"
@@ -24,14 +24,15 @@ metadata:
 
 讀 `pm-workspace/00-intake-clarify.md`（目標/範圍/死線）與 `01-stakeholders-raci.md`（誰是各項目的 R）。若這兩份不存在，先提示使用者回頭跑 `pm-project-clarify` / `pm-raci-watchouts`，不要在缺乏關係人資訊的狀況下硬生成 WBS（負責人會是空的）。
 
-### 2. 規劃前的釐清問題
+若使用者直接餵了一份**功能清單**（PRD、Backlog 匯出、規格書），這份是 WBS 結構的主要來源：每個功能/需求項目先對應成一個候選工作包，不用等使用者口頭描述一遍。
 
-在生成 WBS 之前，確認：
-- 主要交付物有哪些？（對應 clarify 文件的範圍段落）
-- 交付物之間的相依關係與順序限制
+### 2. 從功能清單直接推導，只問清單沒回答的部分
+
+先把功能清單的每一項對應成工作包草案（拆解到可指派、可估工的顆粒度）。只有下列這些功能清單通常不會寫的資訊才需要回頭問使用者：
+- 工作包之間的相依關係與順序限制（清單多半是平的，不含順序）
 - 已知的硬性死線／里程碑
 - 團隊產能與既有承諾（避免規劃出不可能的時程）
-- 驗收標準（來自交付對象，不是 PM 自己假設）
+- 驗收標準（來自交付對象，不是 PM 自己假設；清單通常只列功能不列驗收標準）
 
 ### 3. 產生 WBS
 

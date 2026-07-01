@@ -20,6 +20,16 @@
 
 詳細架構與 loop 圖見 [`ARCHITECTURE.md`](./ARCHITECTURE.md)。
 
+## 怎麼用：餵素材
+
+不是逐題訪談。把手上現有的三類素材直接餵給對應 skill，skill 會先從素材榨答案，只對榨不出來的部分回頭問你：
+
+- **會議記錄**（逐字稿/轉錄輸出/手記）→ `pm-meeting-loop`
+- **專案功能清單**（PRD/Backlog/規格書）→ `pm-wbs-kickoff`（也可給 `pm-project-clarify`）
+- **專案目標描述**（一段話、企劃書）→ `pm-project-clarify`
+
+詳見 [`ARCHITECTURE.md`](./ARCHITECTURE.md) 的輸入模式說明。
+
 ## Skill 一覽
 
 | Skill | 對應需求 | 說明 |
