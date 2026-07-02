@@ -52,5 +52,20 @@ metadata:
 
 - `pm-workspace/meetings/<日期>-<主題>-agenda.md`
 - `pm-workspace/meetings/<日期>-<主題>-recap.md`
-- 更新後的 `pm-workspace/02-wbs.md`、`03-status-log.md`
+- `pm-workspace/meetings/<日期>-<主題>.json` — 給 `dashboard/` 儀表板讀的機器可讀版本（schema 見 `dashboard/lib/types.ts` 的 `MeetingRecord`），recap 完成後寫入或更新：
+
+  ```json
+  {
+    "date": "2026-07-01", "topic": "週會", "type": "planning",
+    "plannedMinutes": 30, "actualMinutes": 50,
+    "decisions": ["..."],
+    "actionItems": [
+      { "id": "a1", "description": "...", "owner": "開發組", "dueDate": "2026-07-10", "status": "open", "linkedWbsId": "wp3" }
+    ]
+  }
+  ```
+
+  `status` 只能是 `open`｜`done`；`linkedWbsId` 對應到 `02-wbs.json` 裡的工作包 `id`，找不到對應項目就省略這個欄位，不要瞎猜。這個檔名不含 `-agenda`/`-recap` 後綴，方便跟同一場會議的兩份 md 區分。
+
+- 更新後的 `pm-workspace/02-wbs.md`、`03-status-log.md`，以及對應的 `02-wbs.json`（工作包狀態隨 recap 更新時同步改 `status`）、`03-status-log.json`（schema 見 `StatusLog`：`{"entries":[{"date","summary","openItems","decisions","nextCheckIn"}]}`）
 - 視情況：對外的 stakeholder update、跨會議 synthesize 報告

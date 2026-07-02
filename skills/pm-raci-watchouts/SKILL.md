@@ -57,7 +57,20 @@ metadata:
 
 ### 5. 寫回工作區
 
-輸出寫入 `pm-workspace/01-stakeholders-raci.md`：RACI 矩陣 + 衝突點 + 各角色注意事項清單。
+輸出寫入 `pm-workspace/01-stakeholders-raci.md`（人看的版本）：RACI 矩陣 + 衝突點 + 各角色注意事項清單。
+
+同時寫入 `pm-workspace/01-stakeholders-raci.json`（給 `dashboard/` 儀表板讀的機器可讀版本，schema 見 `dashboard/lib/types.ts` 的 `RaciData`）：
+
+```json
+{
+  "stakeholders": [{ "name": "陳協理", "role": "sponsor", "notes": "..." }],
+  "matrix": [{ "item": "驗收簽署", "assignments": { "陳協理": "A", "PM": "R" } }],
+  "conflicts": ["..."],
+  "watchouts": { "sponsor": ["..."], "consultant": ["..."], "dev": ["..."], "pm": ["..."] }
+}
+```
+
+`role` 只能是 `sponsor`｜`consultant`｜`dev`｜`delivery-target`｜`pm`｜`other`；`assignments` 的值只能是 `R`｜`A`｜`C`｜`I`。兩份檔案內容必須一致，之後若只改了 md 忘記同步 json，儀表板會顯示舊資料。
 
 ## 下一步
 

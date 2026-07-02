@@ -1,0 +1,36 @@
+{
+  "date": "2026-06-29",
+  "topic": "週會",
+  "type": "planning",
+  "plannedMinutes": 30,
+  "actualMinutes": 50,
+  "decisions": [
+    "UX 線框延遲，開發組後端 API 先行準備技術方案，等線框定案再開工"
+  ],
+  "actionItems": [
+    {
+      "id": "a3",
+      "description": "林顧問補交剩餘頁面線框",
+      "owner": "林顧問",
+      "dueDate": "2026-07-06",
+      "status": "open",
+      "linkedWbsId": "wp2"
+    },
+    {
+      "id": "a4",
+      "description": "與資安部門排時間對齊權限整合方案",
+      "owner": "PM",
+      "dueDate": "2026-06-30",
+      "status": "open",
+      "linkedWbsId": "wp5"
+    },
+    {
+      "id": "a5",
+      "description": "開發組評估後端 API 的技術選型",
+      "owner": "開發組",
+      "dueDate": "2026-07-10",
+      "status": "open",
+      "linkedWbsId": "wp3"
+    }
+  ]
+}

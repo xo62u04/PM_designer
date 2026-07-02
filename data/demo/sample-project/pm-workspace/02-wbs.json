@@ -1,0 +1,58 @@
+{
+  "milestones": [
+    { "id": "m1", "name": "需求與設計定案", "dueDate": "2026-07-10" },
+    { "id": "m2", "name": "開發完成", "dueDate": "2026-08-15" },
+    { "id": "m3", "name": "驗收上線", "dueDate": "2026-08-29" }
+  ],
+  "workPackages": [
+    {
+      "id": "wp1",
+      "name": "需求訪談與範圍確認",
+      "milestoneId": "m1",
+      "owner": "PM",
+      "status": "done"
+    },
+    {
+      "id": "wp2",
+      "name": "UX 線框與流程設計",
+      "milestoneId": "m1",
+      "owner": "林顧問",
+      "status": "in-progress",
+      "risk": "顧問本週有其他案子，可能延遲交付線框"
+    },
+    {
+      "id": "wp3",
+      "name": "後端 API 開發",
+      "milestoneId": "m2",
+      "owner": "開發組",
+      "status": "not-started",
+      "dependsOn": ["wp2"],
+      "estimate": "10 人天"
+    },
+    {
+      "id": "wp4",
+      "name": "前端頁面開發",
+      "milestoneId": "m2",
+      "owner": "開發組",
+      "status": "not-started",
+      "dependsOn": ["wp2"],
+      "estimate": "12 人天"
+    },
+    {
+      "id": "wp5",
+      "name": "與既有權限系統整合",
+      "milestoneId": "m2",
+      "status": "blocked",
+      "risk": "等待資安部門確認整合方式，尚未有人明確負責跟進",
+      "dependsOn": ["wp3"]
+    },
+    {
+      "id": "wp6",
+      "name": "業務部驗收",
+      "milestoneId": "m3",
+      "owner": "業務部",
+      "status": "not-started",
+      "dependsOn": ["wp3", "wp4", "wp5"]
+    }
+  ]
+}

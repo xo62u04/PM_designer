@@ -51,7 +51,23 @@ metadata:
 
 ### 4. 寫回工作區
 
-輸出寫入 `pm-workspace/02-wbs.md`：WBS 樹狀結構 + 里程碑時間軸 + 待指派清單 + 風險清單。
+輸出寫入 `pm-workspace/02-wbs.md`（人看的版本）：WBS 樹狀結構 + 里程碑時間軸 + 待指派清單 + 風險清單。
+
+同時寫入 `pm-workspace/02-wbs.json`（給 `dashboard/` 儀表板讀的機器可讀版本，schema 見 `dashboard/lib/types.ts` 的 `WbsData`）：
+
+```json
+{
+  "milestones": [{ "id": "m1", "name": "需求與設計定案", "dueDate": "2026-07-10" }],
+  "workPackages": [
+    {
+      "id": "wp1", "name": "...", "milestoneId": "m1", "owner": "開發組",
+      "status": "not-started", "dependsOn": ["wp0"], "risk": "...", "estimate": "5 人天"
+    }
+  ]
+}
+```
+
+`status` 只能是 `not-started`｜`in-progress`｜`blocked`｜`done`；沒有負責人就省略 `owner` 欄位（不要填空字串），儀表板會自動標示「待指派」。`id` 要穩定（後續會被 `pm-meeting-loop` 的 action item 用 `linkedWbsId` 引用），改動 WBS 結構時盡量不要重新命名既有 id。
 
 ## 下一步
 

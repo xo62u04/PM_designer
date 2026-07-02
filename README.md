@@ -50,6 +50,18 @@
 pm-onboarding → pm-project-clarify → pm-raci-watchouts → pm-wbs-kickoff → (重複) pm-meeting-loop
 ```
 
+## 儀表板
+
+Skill 產出的結果除了寫成 md 文件，也會同時寫一份 JSON（schema 見 `dashboard/lib/types.ts`）。`dashboard/` 是一個純檢視用的本地 Next.js 網頁，讀這些 JSON 畫成 RACI 表、WBS 看板、action item 逾期清單、會議時間軸——它不生成內容，只負責把 skill 已經產出的資料視覺化。
+
+```bash
+cd dashboard
+npm install
+npm run dev
+```
+
+預設開 http://localhost:3000 就能看到內建的範例專案（`data/demo/sample-project/`）。要看你自己的專案，把對應的 `<owner>/<project>/pm-workspace/` 放到 `data/` 底下（或用 `PM_DESIGNER_DATA_ROOT` 環境變數指向你實際存放專案資料的路徑）。詳細的資料夾慣例見 [`ARCHITECTURE.md`](./ARCHITECTURE.md)。
+
 ## 授權
 
 本專案原創部分沿用你所選擇的授權；vendor 進來的 `skills/vendor/pm-skills/` 內容為 Apache-2.0，詳見該目錄的 `LICENSE`、`NOTICE.md` 與根目錄 `THIRD_PARTY_NOTICES.md`。

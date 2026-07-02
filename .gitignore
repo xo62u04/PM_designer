@@ -1,0 +1,4 @@
+# Real PM project data goes under data/<owner>/<project>/ and can contain
+# sensitive project info, so only the demo/sample data ships in the repo.
+/data/*
+!/data/demo/

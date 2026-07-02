@@ -29,24 +29,40 @@
 
 ## 專案工作區慣例
 
-建議每個專案在使用者自己的專案管理資料夾裡建立：
+每個專案在 `<owner>/<project-slug>/pm-workspace/` 底下建立，`owner` 是使用者自己的（本地單一使用者的話固定用一個資料夾名即可，例如自己的名字或 `me`）；這個 `<owner>/<project-slug>/` 分層是刻意的，即使現在是個人本地使用、沒有登入系統，日後要接多人也不用重構資料夾結構，只要在上面加一層帳號驗證即可：
 
 ```
-<project-root>/pm-workspace/
-  00-intake-clarify.md       # pm-project-clarify 的輸出：目標、範圍、關係人初稿
-  01-stakeholders-raci.md    # pm-raci-watchouts 的輸出：關係人清單、RACI矩陣、各角色注意事項
-  02-wbs.md                  # pm-wbs-kickoff 的輸出：WBS、里程碑、風險
-  03-status-log.md           # pm-meeting-loop 每輪會議 recap/synthesize 後更新的專案狀態總表
-  meetings/
-    2026-07-01-kickoff-agenda.md
-    2026-07-01-kickoff-recap.md
-    ...
+<owner>/<project-slug>/
+  project.json                 # { "name": "顯示用的專案名稱" }
+  pm-workspace/
+    00-intake-clarify.md       # pm-project-clarify 的輸出：目標、範圍、關係人初稿
+    01-stakeholders-raci.md    # pm-raci-watchouts 的輸出（人看）
+    01-stakeholders-raci.json  # 同上，機器可讀版本，給 dashboard 用
+    02-wbs.md                  # pm-wbs-kickoff 的輸出（人看）
+    02-wbs.json                # 同上，機器可讀版本
+    03-status-log.md           # pm-meeting-loop 累積的專案狀態總表（人看）
+    03-status-log.json         # 同上，機器可讀版本
+    meetings/
+      2026-07-01-kickoff-agenda.md
+      2026-07-01-kickoff-recap.md
+      2026-07-01-kickoff.json  # 該場會議的 action item / 決策，機器可讀版本
+      ...
 ```
+
+每個機器可讀 `.json` 都對應一份給人看的 `.md`，兩者內容必須一致——`.md` 給人在編輯器/git 裡讀，`.json` 給 `dashboard/` 儀表板讀。schema 定義在 `dashboard/lib/types.ts`，各 skill 的「寫回工作區」段落裡有各自欄位的說明與範例。
 
 所有 skill 在執行時都應該：
 1. 先檢查這些檔案是否已存在，存在就讀取當作上下文，不要重問已經回答過的問題
-2. 產出後寫回對應檔案（或提示使用者將輸出貼入對應檔案）
+2. 產出後同時寫回 `.md`（人看）與 `.json`（機器可讀，儀表板用）兩份檔案，不要只寫其中一份
 3. 在輸出結尾附上「下一步該跑哪個 skill」的提示，讓 loop 走得下去
+
+## 儀表板（`dashboard/`）
+
+`dashboard/` 是一個純檢視、不含 AI 生成的本地 Next.js 網頁，讀取上述 `<owner>/<project-slug>/pm-workspace/*.json`，畫成 RACI 表、WBS 看板、action item 清單（含逾期提醒）、會議時間軸。它只負責「把已經產出的資料視覺化」，不負責產生內容——內容還是由上面幾個 skill 在 Claude Code 裡產生。
+
+- 資料根目錄預設是這個 repo 的 `data/`（可用環境變數 `PM_DESIGNER_DATA_ROOT` 指向別的路徑，例如你實際在用的專案資料夾）
+- 個人本地使用，沒有登入系統；`data/demo/sample-project/` 是內建的範例資料，方便直接 `npm run dev` 看效果
+- 跑法：`cd dashboard && npm install && npm run dev`，預設 http://localhost:3000
 
 ## 為什麼用「Skill」而不是自己刻一個 App
 
