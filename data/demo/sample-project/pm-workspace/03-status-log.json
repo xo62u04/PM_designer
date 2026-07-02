@@ -1,0 +1,17 @@
+{
+  "entries": [
+    {
+      "date": "2026-06-15",
+      "summary": "Kickoff 完成，範圍與決策權責已對齊",
+      "openItems": ["資安部門權限整合要求待確認"],
+      "decisions": ["陳協理為唯一決策者"],
+      "nextCheckIn": "2026-06-29"
+    },
+    {
+      "date": "2026-06-29",
+      "summary": "UX 線框進度落後，兩項 action item 已逾期未結案",
+      "openItems": ["UX 線框未交齊", "資安對齊會議尚未排定"],
+      "nextCheckIn": "2026-07-06"
+    }
+  ]
+}

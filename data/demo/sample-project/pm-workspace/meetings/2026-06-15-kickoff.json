@@ -1,0 +1,28 @@
+{
+  "date": "2026-06-15",
+  "topic": "專案 Kickoff",
+  "type": "project-kickoff",
+  "plannedMinutes": 60,
+  "actualMinutes": 65,
+  "decisions": [
+    "確認專案範圍為內部工具的 UX 改版與權限整合",
+    "陳協理為最終決策者，林顧問僅提供 UX 建議"
+  ],
+  "actionItems": [
+    {
+      "id": "a1",
+      "description": "林顧問提出 UX 線框初稿",
+      "owner": "林顧問",
+      "dueDate": "2026-06-25",
+      "status": "done"
+    },
+    {
+      "id": "a2",
+      "description": "確認資安部門對權限整合的要求",
+      "owner": "PM",
+      "dueDate": "2026-06-20",
+      "status": "open",
+      "linkedWbsId": "wp5"
+    }
+  ]
+}
